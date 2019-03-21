@@ -1,7 +1,7 @@
 # EWSToolkit
 
 ```text
-_____________      __  _________ ___________           .__   __   .__  __
+ _____________      __  _________ ___________           .__   __   .__  __
  \_   _____/  \    /  \/   _____/ \__    ___/___   ____ |  | |  | _|__|/  |_
   |    __)_\   \/\/   /\_____  \    |    | /  _ \ /  _ \|  | |  |/ /  \   __\
   |        \\        / /        \   |    |(  <_> |  <_> )  |_|    <|  ||  |
@@ -19,7 +19,7 @@ _____________      __  _________ ___________           .__   __   .__  __
   -b, --body=VALUE           Trigger on these strings in the mail Body
   -f, --forward=VALUE        Email address to receive forwarded emails at
       --homefolder           Set a malicious URL on a folder
-  -u, --url=VALUE            Malcious URL to configure
+  -u, --url=VALUE            URL to configure
       --installapp           Install a malicious Web Add-In
   -m, --manifest=VALUE       Manifest to install
   -h, -?, --help             Show this help

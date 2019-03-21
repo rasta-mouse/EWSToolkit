@@ -55,7 +55,7 @@ namespace EWS
                 { "b|body=", "Trigger on these strings in the mail Body", v => bodyStrings = CreateList(v) },
                 { "f|forward=", "Email address to receive forwarded emails at", v => forwardAddress = v },
                 { "homefolder", "Set a malicious URL on a folder", v => homefolder = true },
-                { "u|url=", "Malcious URL to configure", v => url = v },
+                { "u|url=", "URL to configure", v => url = v },
                 { "installapp", "Install a malicious Web Add-In", v => installapp = true },
                 { "m|manifest=", "Manifest to install", v => manifest = v },
                 { "h|?|help", "Show this help", v => help = true }
