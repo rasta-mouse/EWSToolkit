@@ -20,7 +20,7 @@ _____________      __  _________ ___________           .__   __   .__  __
   -f, --forward=VALUE        Email address to receive forwarded emails at
       --homefolder           Set a malicious URL on a folder
   -u, --url=VALUE            Malcious URL to configure
-      --installapp           Install a malicious Outlook VSTO Add-In
+      --installapp           Install a malicious Web Add-In
   -m, --manifest=VALUE       Manifest to install
   -h, -?, --help             Show this help
 
