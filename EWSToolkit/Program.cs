@@ -56,7 +56,7 @@ namespace EWS
                 { "f|forward=", "Email address to receive forwarded emails at", v => forwardAddress = v },
                 { "homefolder", "Set a malicious URL on a folder", v => homefolder = true },
                 { "u|url=", "Malcious URL to configure", v => url = v },
-                { "installapp", "Install a malicious Outlook VSTO Add-In", v => installapp = true },
+                { "installapp", "Install a malicious Web Add-In", v => installapp = true },
                 { "m|manifest=", "Manifest to install", v => manifest = v },
                 { "h|?|help", "Show this help", v => help = true }
             };
