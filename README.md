@@ -44,3 +44,5 @@ C:\Users\dduggan>C:\Tools\EWSToolkit\EWSToolkit\bin\Debug\EWS.exe
   Install MailApp
     ews -E user@domain.com -P Passw0rd! --installapp -M C:\Users\Rasta\Desktop\manifest.xml
 ```
+
+Also see related blog posts:  [https://rastamouse.me/tags/ews/](https://rastamouse.me/tags/ews/)
