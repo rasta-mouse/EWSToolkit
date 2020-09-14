@@ -50,8 +50,8 @@ namespace DemoApp
             Search searchData = new Search(connection);
 
             //Add single search terms
-            searchData.AddBodySearchTerm("Password");
-            searchData.AddSubjectSearchTerm("Onoarding");
+            searchData.AddBodySearchTerm("Administrator");
+            searchData.AddSubjectSearchTerm("Support");
 
             //Add multi search terms
             searchData.AddBodySearchTerms(new string[] { "Password", "Login" });
